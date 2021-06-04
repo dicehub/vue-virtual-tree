@@ -39,7 +39,7 @@ export default defineComponent({
     const flatList = ref<TreeNodeOptions[]>([]);
     watch(() => props.source, newVal => {
       flatList.value = flattenTree(newVal);
-    }, { immediate: true });
+    }, { immediate: true, deep: true });
     const selectChange = (node: TreeNodeOptions) => {
       node.selected = !node.selected;
       if (selectedKey.value !== node.nodeKey) {
