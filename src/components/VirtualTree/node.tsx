@@ -57,7 +57,7 @@ export default defineComponent({
       return <div class={ ['node-arrow', props.node.expanded ? 'expanded' : ''] } onClick={ handleExpand }>
         {
           props.node.hasChildren
-            ? props.iconSlot ? props.iconSlot(props.node.loading) : props.node.loading
+            ? props.iconSlot ? props.iconSlot(props.node) : props.node.loading
             ? <i class="iconfont iconloading ico-loading" />
             : <i class="iconfont iconExpand" />
             : null
