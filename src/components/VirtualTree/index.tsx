@@ -29,6 +29,10 @@ export default defineComponent({
       type: Number,
       default: 8
     },
+    nodeOffsetBase: {
+      type: Number,
+      default: 18
+    },
     loadData: Function as PropType<(node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void>,
     render: Function
   },
@@ -159,6 +163,7 @@ export default defineComponent({
                 node: data.item,
                 showCheckbox: props.showCheckbox,
                 checkStrictly: props.checkStrictly,
+                nodeOffsetBase: props.nodeOffsetBase,
                 iconSlot: slots.icon,
                 render: props.render,
                 onSelectChange: selectChange,

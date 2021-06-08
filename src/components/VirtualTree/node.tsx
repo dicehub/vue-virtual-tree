@@ -19,6 +19,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    nodeOffsetBase: {
+      type: Number,
+      required: true
+    },
     render: Function
   },
   emits: ['select-change', 'toggle-expand', 'check-change'],
@@ -92,7 +96,7 @@ export default defineComponent({
     // console.log('iconSlot', props.iconSlot);
     return () => {
       return (
-        <div class="vir-tree-node" style={{ paddingLeft: props.node.level! * 18 + 'px' }}>
+        <div class="vir-tree-node" style={{ paddingLeft: props.node.level! * props.nodeOffsetBase + 'px' }}>
           { renderArrow() }
           { renderContent() }
         </div>
