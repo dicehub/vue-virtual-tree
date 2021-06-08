@@ -6,10 +6,6 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<TreeNodeOptions[]>;
         default: () => never[];
     };
-    readonly: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
     showCheckbox: {
         type: BooleanConstructor;
         default: boolean;
@@ -26,6 +22,10 @@ declare const _default: import("vue").DefineComponent<{
         type: NumberConstructor;
         default: number;
     };
+    nodeOffsetBase: {
+        type: NumberConstructor;
+        default: number;
+    };
     loadData: PropType<(node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void>;
     render: FunctionConstructor;
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("selectChange" | "checkChange")[], "selectChange" | "checkChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
@@ -34,7 +34,7 @@ declare const _default: import("vue").DefineComponent<{
     remain: number;
     showCheckbox: boolean;
     checkStrictly: boolean;
-    readonly: boolean;
+    nodeOffsetBase: number;
 } & {
     render?: Function | undefined;
     loadData?: ((node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void) | undefined;
@@ -44,6 +44,6 @@ declare const _default: import("vue").DefineComponent<{
     remain: number;
     showCheckbox: boolean;
     checkStrictly: boolean;
-    readonly: boolean;
+    nodeOffsetBase: number;
 }>;
 export default _default;
