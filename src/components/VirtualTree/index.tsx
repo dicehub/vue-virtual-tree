@@ -45,13 +45,24 @@ export default defineComponent({
       flatList.value = flattenTree(newVal);
     }, { immediate: true });
     const selectChange = (node: Required<TreeNodeOptions>) => {
-      node.selected = !node.selected;
-      if (selectedKey.value !== node.nodeKey) {
-        const preSelectedIndex = flatList.value.findIndex(item => item.nodeKey === selectedKey.value);
-        if (preSelectedIndex > -1) {
-          flatList.value[preSelectedIndex].selected = false;
+      if (selectedKey.value) {
+        if (selectedKey.value === node.nodeKey) {
+          node.selected = false
+          selectedKey.value = '';
+          emit('selectChange', node);
+        } else {
+          const prevSelectedNode = flatList.value.find((item) => {
+            return item.nodeKey === selectedKey.value
+          })
+          if (prevSelectedNode) {
+            prevSelectedNode.selected = false;
+          }
+          node.selected = true
+          selectedKey.value = node.nodeKey;
+          emit('selectChange', node);
         }
-        node.selected = true;
+      } else {
+        node.selected = true
         selectedKey.value = node.nodeKey;
         emit('selectChange', node);
       }
