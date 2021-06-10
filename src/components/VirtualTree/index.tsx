@@ -33,6 +33,10 @@ export default defineComponent({
       type: Number,
       default: 18
     },
+    showLines: {
+      type: Boolean,
+      default: true
+    },
     loadData: Function as PropType<(node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void>,
     render: Function
   },
@@ -175,6 +179,8 @@ export default defineComponent({
                 showCheckbox: props.showCheckbox,
                 checkStrictly: props.checkStrictly,
                 nodeOffsetBase: props.nodeOffsetBase,
+                size: props.size,
+                showLines: props.showLines,
                 iconSlot: slots.icon,
                 render: props.render,
                 onSelectChange: selectChange,

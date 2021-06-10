@@ -1,4 +1,4 @@
-import {computed, defineComponent, PropType, Slot} from "vue";
+import {computed, defineComponent, PropType, Slot, withModifiers} from "vue";
 import {TreeNodeOptions} from "./types";
 import VirtualCheckbox from '../VirtualCheckbox';
 import RenderNode from './render';
@@ -20,6 +20,10 @@ export default defineComponent({
       default: false
     },
     nodeOffsetBase: {
+      type: Number,
+      required: true
+    },
+    size: {
       type: Number,
       required: true
     },
@@ -58,7 +62,7 @@ export default defineComponent({
       emit('check-change', [checked, props.node])
     }
     const renderArrow = (): JSX.Element | null => {
-      return <div class={ ['node-arrow', props.node.expanded ? 'expanded' : ''] } onClick={ handleExpand }>
+      return <div class={ ['node-arrow', props.node.expanded ? 'expanded' : ''] } onClick={ withModifiers(handleExpand, ['stop']) }>
         {
           props.node.hasChildren
             ? props.iconSlot ? props.iconSlot(props.node) : props.node.loading
@@ -67,6 +71,30 @@ export default defineComponent({
             : null
         }
       </div>
+    }
+
+    const renderLine = (): JSX.Element | null => {
+      if (!props.node.level) {
+        return null
+      }
+
+      const listLines = []
+
+      for(let lineCounter = 0; lineCounter < props.node.level; lineCounter++) {
+        listLines.push(<div class={ ['node-line'] } style={{ width: props.nodeOffsetBase + 'px' }} />)
+      }
+
+      return <section class={ ['node-lines'] }>
+        <div class={ ['node-line-list'] } style={{ height: `${props.size}px` }}>
+          { listLines }
+        </div>
+        <div class={['node-line-connector']} style={{
+          top: `${props.size / 2}px`,
+          left: `${props.node.level * props.nodeOffsetBase - props.nodeOffsetBase / 2}px`,
+          width: props.node.hasChildren ? `${props.nodeOffsetBase / 2}px` : `${props.nodeOffsetBase}px`
+        }}
+        />
+      </section>
     }
 
     const renderContent = () => {
@@ -96,7 +124,8 @@ export default defineComponent({
     // console.log('iconSlot', props.iconSlot);
     return () => {
       return (
-        <div class="vir-tree-node" style={{ paddingLeft: props.node.level! * props.nodeOffsetBase + 'px' }}>
+        <div class="vir-tree-node" style={{ paddingLeft: props.node.level! * props.nodeOffsetBase + 'px' }} onClick={ handleSelect }>
+          { renderLine() }
           { renderArrow() }
           { renderContent() }
         </div>
