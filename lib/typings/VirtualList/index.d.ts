@@ -32,9 +32,9 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:modelValue" | "range")[], "update:modelValue" | "range", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    size: number;
     list: unknown[];
     customForOf: boolean;
-    size: number;
     remain: number;
     start: number;
     offset: number;

@@ -26,6 +26,10 @@ declare const _default: import("vue").DefineComponent<{
         type: NumberConstructor;
         default: number;
     };
+    showLines: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     loadData: PropType<(node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void>;
     render: FunctionConstructor;
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("selectChange" | "checkChange")[], "selectChange" | "checkChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
@@ -35,6 +39,7 @@ declare const _default: import("vue").DefineComponent<{
     nodeOffsetBase: number;
     size: number;
     remain: number;
+    showLines: boolean;
 } & {
     render?: Function | undefined;
     loadData?: ((node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void) | undefined;
@@ -45,5 +50,6 @@ declare const _default: import("vue").DefineComponent<{
     nodeOffsetBase: number;
     size: number;
     remain: number;
+    showLines: boolean;
 }>;
 export default _default;
