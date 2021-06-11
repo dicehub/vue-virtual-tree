@@ -15,6 +15,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showLines: {
+      type: Boolean,
+      default: true
+    },
     checkStrictly: {
       type: Boolean,
       default: false
@@ -73,8 +77,8 @@ export default defineComponent({
       </div>
     }
 
-    const renderLine = (): JSX.Element | null => {
-      if (!props.node.level) {
+    const renderLines = (): JSX.Element | null => {
+      if (!props.node.level || !props.showLines) {
         return null
       }
 
@@ -89,9 +93,9 @@ export default defineComponent({
           { listLines }
         </div>
         <div class={['node-line-connector']} style={{
-          top: `${props.size / 2}px`,
-          left: `${props.node.level * props.nodeOffsetBase - props.nodeOffsetBase / 2}px`,
-          width: props.node.hasChildren ? `${props.nodeOffsetBase / 2}px` : `${props.nodeOffsetBase}px`
+          top: `${props.size / 2 - 1}px`,
+          left: `${(props.node.level - 0.5) * props.nodeOffsetBase}px`,
+          width: `${props.nodeOffsetBase / 2}px`
         }}
         />
       </section>
@@ -125,7 +129,7 @@ export default defineComponent({
     return () => {
       return (
         <div class="vir-tree-node" style={{ paddingLeft: props.node.level! * props.nodeOffsetBase + 'px' }} onClick={ handleSelect }>
-          { renderLine() }
+          { renderLines() }
           { renderArrow() }
           { renderContent() }
         </div>
