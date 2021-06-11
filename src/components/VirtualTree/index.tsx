@@ -94,7 +94,7 @@ export default defineComponent({
         item.children = item.children || [];
         item.hasChildren = item.hasChildren || false;
         item.parentKey = node.nodeKey || null;
-        item.last = index === children.length - 1
+        item.last = index === trueChildren.length - 1
         return item;
       });
       const targetIndex = flatList.value.findIndex(item => item.nodeKey === node.nodeKey);

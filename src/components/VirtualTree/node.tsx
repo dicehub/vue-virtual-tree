@@ -65,6 +65,37 @@ export default defineComponent({
     const handleCheckChange = (checked: boolean) => {
       emit('check-change', [checked, props.node])
     }
+    
+    const renderLines = (): JSX.Element | null => {
+      if (!props.node.level || !props.showLines) {
+        return null
+      }
+
+      const listLines = []
+
+      for(let lineCounter = 0; lineCounter < props.node.level; lineCounter++) {
+        listLines.push(<div
+          class={ ['node-line'] }
+          style={{
+            width: props.nodeOffsetBase + 'px',
+            height: props.node.last && (lineCounter === props.node.level - 1) ? `50%` : `100%`
+          }}
+        />)
+      }
+
+      return <section class={ ['node-lines'] }>
+        <div class={ ['node-line-list'] } style={{ height: `${props.size}px` }}>
+          { listLines }
+        </div>
+        <div class={['node-line-connector']} style={{
+          top: `${props.size / 2 - 1}px`,
+          left: `${(props.node.level - 0.73) * props.nodeOffsetBase}px`,
+          width: `${props.nodeOffsetBase / 2}px`
+        }}
+        />
+      </section>
+    }
+
     const renderArrow = (): JSX.Element | null => {
       return <div class={ ['node-arrow', props.node.expanded ? 'expanded' : ''] } onClick={ withModifiers(handleExpand, ['stop']) }>
         {
@@ -75,30 +106,6 @@ export default defineComponent({
             : null
         }
       </div>
-    }
-
-    const renderLines = (): JSX.Element | null => {
-      if (!props.node.level || !props.showLines) {
-        return null
-      }
-
-      const listLines = []
-
-      for(let lineCounter = 0; lineCounter < props.node.level; lineCounter++) {
-        listLines.push(<div class={ ['node-line'] } style={{ width: props.nodeOffsetBase + 'px' }} />)
-      }
-
-      return <section class={ ['node-lines'] }>
-        <div class={ ['node-line-list'] } style={{ height: props.node.last ? `${props.size / 2}px` : `${props.size}px` }}>
-          { listLines }
-        </div>
-        <div class={['node-line-connector']} style={{
-          top: `${props.size / 2 - 1}px`,
-          left: `${(props.node.level - 0.73) * props.nodeOffsetBase}px`,
-          width: `${props.nodeOffsetBase / 2}px`
-        }}
-        />
-      </section>
     }
 
     const renderContent = () => {
