@@ -10,6 +10,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    showLines: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     checkStrictly: {
         type: BooleanConstructor;
         default: boolean;
@@ -26,6 +30,7 @@ declare const _default: import("vue").DefineComponent<{
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("select-change" | "toggle-expand" | "check-change")[], "select-change" | "toggle-expand" | "check-change", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     node: Required<TreeNodeOptions>;
     showCheckbox: boolean;
+    showLines: boolean;
     checkStrictly: boolean;
     nodeOffsetBase: number;
     size: number;
@@ -34,6 +39,7 @@ declare const _default: import("vue").DefineComponent<{
     iconSlot?: Slot | undefined;
 }>, {
     showCheckbox: boolean;
+    showLines: boolean;
     checkStrictly: boolean;
 }>;
 export default _default;

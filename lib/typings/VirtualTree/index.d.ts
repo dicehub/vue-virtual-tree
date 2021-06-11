@@ -35,21 +35,21 @@ declare const _default: import("vue").DefineComponent<{
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("selectChange" | "checkChange")[], "selectChange" | "checkChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     source: TreeNodeOptions[];
     showCheckbox: boolean;
+    showLines: boolean;
     checkStrictly: boolean;
     nodeOffsetBase: number;
     size: number;
     remain: number;
-    showLines: boolean;
 } & {
     render?: Function | undefined;
     loadData?: ((node: TreeNodeOptions, callback: (children: TreeNodeOptions[]) => void) => void) | undefined;
 }>, {
     source: TreeNodeOptions[];
     showCheckbox: boolean;
+    showLines: boolean;
     checkStrictly: boolean;
     nodeOffsetBase: number;
     size: number;
     remain: number;
-    showLines: boolean;
 }>;
 export default _default;
