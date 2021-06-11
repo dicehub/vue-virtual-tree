@@ -89,12 +89,12 @@ export default defineComponent({
       }
 
       return <section class={ ['node-lines'] }>
-        <div class={ ['node-line-list'] } style={{ height: `${props.size}px` }}>
+        <div class={ ['node-line-list'] } style={{ height: props.node.last ? `${props.size / 2}px` : `${props.size}px` }}>
           { listLines }
         </div>
         <div class={['node-line-connector']} style={{
           top: `${props.size / 2 - 1}px`,
-          left: `${(props.node.level - 0.7) * props.nodeOffsetBase}px`,
+          left: `${(props.node.level - 0.73) * props.nodeOffsetBase}px`,
           width: `${props.nodeOffsetBase / 2}px`
         }}
         />

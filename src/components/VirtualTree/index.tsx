@@ -84,7 +84,7 @@ export default defineComponent({
 
     const expandNode = (node: Required<TreeNodeOptions>, children: TreeNodeOptions[] = []) => {
       const trueChildren = children.length ? children : cloneDeep(node.children)!;
-      node.children = trueChildren.map(item => {
+      node.children = trueChildren.map((item, index) => {
         item.loading = false;
         item.level = item.level || node.level! + 1;
         item.disabled = item.disabled || false;
@@ -94,6 +94,7 @@ export default defineComponent({
         item.children = item.children || [];
         item.hasChildren = item.hasChildren || false;
         item.parentKey = node.nodeKey || null;
+        item.last = index === children.length - 1
         return item;
       });
       const targetIndex = flatList.value.findIndex(item => item.nodeKey === node.nodeKey);

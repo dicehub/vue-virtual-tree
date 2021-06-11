@@ -4,7 +4,7 @@ import {TreeNodeOptions} from "./types";
 function flattenTree(source: TreeNodeOptions[]): Required<TreeNodeOptions>[] {
   const result: Required<TreeNodeOptions>[] = [];
   function recursion (list: TreeNodeOptions[], level = 0, parent: Required<TreeNodeOptions> | null = null) {
-    return list.map(item => {
+    return list.map((item, index) => {
       const flatNode: Required<TreeNodeOptions> = {
         ...item,
         level,
@@ -15,7 +15,8 @@ function flattenTree(source: TreeNodeOptions[]): Required<TreeNodeOptions>[] {
         checked: item.checked || parent?.checked || false,
         hasChildren: item.hasChildren || false,
         parentKey: parent?.nodeKey || null,
-        children: item.children || []
+        children: item.children || [],
+        last: index === list.length - 1 || false
       };
       result.push(flatNode);
       if (item.expanded && item.children?.length) {
