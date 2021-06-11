@@ -44,7 +44,34 @@
     return list;
   }
 
-  const getObjectsList = () => [{"extra":{"type":"filename"},"disabled":true,"name":"flange","nodeKey":"flange","hasChildren":true,"children":[{"extra":{"type":"regionName"},"name":"patch1","nodeKey":"flange-patch1"},{"extra":{"type":"regionName"},"name":"patch2","nodeKey":"flange-patch2"},{"extra":{"type":"regionName"},"name":"patch3","nodeKey":"flange-patch3"},{"extra":{"type":"regionName"},"name":"patch4","nodeKey":"flange-patch4"}]}]
+  const getObjectsList = () => [
+    {
+      "extra":{"type":"filename"},
+      "disabled":true,
+      "expanded":true,
+      "name":"flange",
+      "nodeKey":"flange",
+      "hasChildren":true,
+      "children":
+        [
+          {"extra":{"type":"regionName"},"name":"patch1","nodeKey":"flange-patch1"},
+          {"extra":{"type":"regionName"},"name":"patch2","nodeKey":"flange-patch2"},
+          {
+            "extra":{"type":"regionName"},
+            "name":"patch3",
+            "hasChildren":true,
+            "children": [
+              {"extra":{"type":"regionName"},"name":"sub-patch1","nodeKey":"flange-sub-patch1"},
+              {"extra":{"type":"regionName"},"name":"sub-patch2","nodeKey":"flange-sub-patch2"},
+              {"extra":{"type":"regionName"},"name":"sub-patch3","nodeKey":"flange-sub-patch3"},
+              {"extra":{"type":"regionName"},"name":"sub-patch4","nodeKey":"flange-sub-patch4"}
+            ],
+            "nodeKey":"flange-patch3"
+          },
+          {"extra":{"type":"regionName"},"name":"patch4","nodeKey":"flange-patch4"}
+        ]
+    }
+  ]
 
   export default defineComponent({
     name: 'BaseDemo',
@@ -71,12 +98,15 @@
         })
       }
 
+      const onSelectChange = () => console.log('on-select-change');
+
       return {
         list,
         virTree,
         selectedNode,
         objectsTree,
-        renderContentTree
+        renderContentTree,
+        onSelectChange,
       }
     }
   });

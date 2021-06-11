@@ -94,7 +94,7 @@ export default defineComponent({
         </div>
         <div class={['node-line-connector']} style={{
           top: `${props.size / 2 - 1}px`,
-          left: `${(props.node.level - 0.5) * props.nodeOffsetBase}px`,
+          left: `${(props.node.level - 0.7) * props.nodeOffsetBase}px`,
           width: `${props.nodeOffsetBase / 2}px`
         }}
         />
